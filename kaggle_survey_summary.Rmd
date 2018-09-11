@@ -1,7 +1,7 @@
 ---
 title: "Summary of the Kaggle Data Science Survey"
 author: "Alex Albury"
-date: "August 30, 2018"
+date:
 output: html_document
 ---
 
