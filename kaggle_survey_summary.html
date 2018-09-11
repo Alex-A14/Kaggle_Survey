@@ -210,7 +210,7 @@ tool_count &lt;-<span class="st"> </span>tools <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">group_by</span>(work_tools) <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">summarise</span>(<span class="dt">n =</span> <span class="kw">n</span>()) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">arrange</span>(<span class="kw">desc</span>(n))</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">kable</span>(<span class="kw">head</span>(tool_count), <span class="dt">col.names =</span> <span class="kw">c</span>(<span class="st">&quot;Program&quot;</span>, <span class="st">&quot;Count&quot;</span>))</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">kable</span>(<span class="kw">head</span>(tool_count), <span class="dt">col.names =</span> <span class="kw">c</span>(<span class="st">&quot;Program&quot;</span>, <span class="st">&quot;Count&quot;</span>), <span class="dt">format =</span> <span class="st">&quot;markdown&quot;</span>)</code></pre></div>
 <table>
 <thead>
 <tr class="header">

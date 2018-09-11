@@ -104,19 +104,19 @@ tool_count <- tools %>%
 
 
 ```r
-kable(head(tool_count), col.names = c("Program", "Count"))
+kable(head(tool_count), col.names = c("Program", "Count"), format = "markdown")
 ```
 
 
 
-Program                Count
---------------------  ------
-Python                  6073
-R                       4708
-SQL                     4261
-Jupyter notebooks       3206
-TensorFlow              2256
-Amazon Web services     1868
+|Program             | Count|
+|:-------------------|-----:|
+|Python              |  6073|
+|R                   |  4708|
+|SQL                 |  4261|
+|Jupyter notebooks   |  3206|
+|TensorFlow          |  2256|
+|Amazon Web services |  1868|
 
 ## The R vs. Python Debate
 

@@ -80,7 +80,7 @@ tool_count <- tools %>%
 ```
 
 ```{r}
-kable(head(tool_count), col.names = c("Program", "Count"))
+kable(head(tool_count), col.names = c("Program", "Count"), format = "markdown")
 ```
 
 ## The R vs. Python Debate
