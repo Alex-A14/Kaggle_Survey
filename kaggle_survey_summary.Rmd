@@ -2,7 +2,11 @@
 title: "Summary of the Kaggle Data Science Survey"
 author: "Alex Albury"
 date:
-output: md_document
+output: 
+  html_document: 
+    theme: readable
+    highlight: pygments
+    keep_md: yes
 ---
 
 ```{r setup, include=FALSE}
@@ -14,6 +18,9 @@ knitr::opts_chunk$set(message = FALSE, warning = FALSE)
 library(tidyverse)
 library(knitr)
 library(forcats)
+library(randomForest)
+library(modelr)
+library(pander)
 ```
 
 ```{r}
@@ -33,9 +40,10 @@ plot_factor <- function(var, ttl){
     summarise(n = n()) %>%
     mutate(pct = n/sum(n)*100)
   
-  #plot percentages for each group
-  ggplot(responses, aes(`get(var)`, pct), col = "purple")+
-    geom_bar(stat = "identity")+
+  #plot variable
+  ggplot(responses, aes(`get(var)`, pct))+
+    geom_bar(stat = "identity", fill = "blue")+
+    # Include percentages over bars
     geom_text(aes(label = paste0(round(pct,1), "%"), y = pct+2.0),vjust= -.1)+
     theme_classic()+
     scale_x_discrete(labels = function(x) str_wrap(x, width = 10))+
@@ -60,8 +68,6 @@ tools <- responses  %>%
     select(WorkToolsSelect) %>%
     mutate(work_tools = strsplit(WorkToolsSelect, ",")) %>%
     unnest(work_tools)
-
-head(tools)
 ```
 
 ```{r}
@@ -154,9 +160,6 @@ Even persons who use neither R or Python appear more likely to recommend Python 
 How accurately can we predict how much a person working in data science is paid? We'll select some variables of interest to look at. Age is excluded because it's likely to be related to Tenure (number of years working in data science) and we want to avoid collinearity . We're going to focus on full-time employees and salaries in USD.
 
 ```{r}
-library(randomForest)
-library(modelr)
-
 # Prep data
 model_data <- responses %>%
   
@@ -202,7 +205,9 @@ step$anova # display results
 ### Building our model
 ```{r}
 #Construct model based on stepwise selection results
-final_model <- lm(CompensationAmount ~ FormalEducation + MajorSelect +                            Tenure + EmployerIndustry + JobFunctionSelect,
+final_model <- lm(CompensationAmount ~
+                    FormalEducation + MajorSelect + Tenure + EmployerIndustry + 
+                    JobFunctionSelect,
                   data = model_data)
 ```
 
@@ -226,7 +231,10 @@ set.seed(1313)
 responses_split <- resample_partition(model_data, c(train = 0.7, test = 0.3))
 
 #Train model
-kaggle_model <- randomForest(CompensationAmount ~ FormalEducation +                                   MajorSelect + Tenure + EmployerIndustry +                                       JobFunctionSelect, data = responses_split$train)
+kaggle_model <- randomForest(CompensationAmount ~ 
+                               FormalEducation + MajorSelect + Tenure + 
+                               EmployerIndustry + JobFunctionSelect,
+                             data = responses_split$train)
 
 #Test model
 mae(kaggle_model, responses_split$test)
@@ -234,6 +242,9 @@ mae(kaggle_model, responses_split$test)
 
 This model has an average error of about $33,000. Is this model great? Probably not. But it may have some use. Given the amount of fators infuencing job salary, predicting this in the area of of twenty to thirty thousand dollars might be the best one could hope for. Experimenting with more variables, and including observations from other countries could potentially improve prediction accuracy.
 
+```{r}
+devtools::session_info()
+```
 
 
 
