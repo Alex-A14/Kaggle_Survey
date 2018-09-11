@@ -5,5 +5,7 @@ This project gives a short summary of the results of the Kaggle Data Science sur
 Here are relvant links for the repo:
 
 [Markdown](https://github.com/Alex-A14/Kaggle_Survey/blob/master/kaggle_survey_summary.md)
+
 [html](http://htmlpreview.github.io/?https://github.com/Alex-A14/Kaggle_Survey/blob/master/kaggle_survey_summary.html)
-RMarkdown(https://github.com/Alex-A14/Kaggle_Survey/blob/master/kaggle_survey_summary.Rmd)
+
+[RMarkdown](https://github.com/Alex-A14/Kaggle_Survey/blob/master/kaggle_survey_summary.Rmd)
