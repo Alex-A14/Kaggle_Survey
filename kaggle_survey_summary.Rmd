@@ -2,7 +2,7 @@
 title: "Summary of the Kaggle Data Science Survey"
 author: "Alex Albury"
 date:
-output: html_document
+output: md_document
 ---
 
 ```{r setup, include=FALSE}
@@ -34,7 +34,7 @@ plot_factor <- function(var, ttl){
     mutate(pct = n/sum(n)*100)
   
   #plot percentages for each group
-  ggplot(responses, aes(`get(var)`, pct))+
+  ggplot(responses, aes(`get(var)`, pct), col = "purple")+
     geom_bar(stat = "identity")+
     geom_text(aes(label = paste0(round(pct,1), "%"), y = pct+2.0),vjust= -.1)+
     theme_classic()+
@@ -45,10 +45,10 @@ plot_factor <- function(var, ttl){
 
 # Create vector of variables of interest to iterate over
 kaggle_vars <- c("FormalEducation", "GenderSelect", "EmploymentStatus")
-#Vector of custom plot titles
+# Vector of custom plot titles
 kaggle_titles <- c("Education Level", "Gender", "Employment Status")
 
-#Use map to iterate function over all variables of interest
+# Use map to iterate function over all variables of interest
 map2(kaggle_vars, kaggle_titles, plot_factor)
 ```
 
@@ -60,6 +60,8 @@ tools <- responses  %>%
     select(WorkToolsSelect) %>%
     mutate(work_tools = strsplit(WorkToolsSelect, ",")) %>%
     unnest(work_tools)
+
+head(tools)
 ```
 
 ```{r}
@@ -109,8 +111,9 @@ plot_n <- paste("n =", sum(debate_plot$n))
 # Creating a bar chart
 ggplot(debate_plot, aes(language_preference, n))+
     geom_bar(stat = "identity")+
-    labs(x = "", y = "", title = "Language Preferences Among Data Scientists", caption = plot_n)+
-  theme_classic()
+    labs(x = "", y = "", title = "Language Preferences Among Data Scientists",
+         caption = plot_n)+
+    theme_classic()
 
 ```
 
