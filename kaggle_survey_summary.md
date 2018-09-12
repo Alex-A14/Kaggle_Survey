@@ -1,6 +1,6 @@
 ---
 title: "Summary of the Kaggle Data Science Survey"
-author: "Alex Albury"
+author: "Alexander Albury"
 date:
 output: 
   html_document: 
@@ -274,7 +274,7 @@ final_model <- lm(CompensationAmount ~
                   data = model_data)
 ```
 
-The model has an adjusted R-squared of 0.30 and and p < 0.001.
+The model has an adjusted R-squared of 0.30 and and p < 0.001.Tenure, employer industry, and job function had a significant effect on salary, while major and education level did not show significant effects. This is surprising as most reports seem to list education level as a major factor in determining data science salary.
 
 ### Checking assumptions
 
@@ -326,7 +326,7 @@ devtools::session_info()
 ##  language (EN)                        
 ##  collate  English_United States.1252  
 ##  tz       America/New_York            
-##  date     2018-09-11                  
+##  date     2018-09-12                  
 ## 
 ##  package      * version date       source        
 ##  assertthat     0.2.0   2017-04-11 CRAN (R 3.4.3)
